@@ -11,7 +11,7 @@ Built at Free Society Hack (Mumbai, 4 Nov 2026). New repo, written during the ha
 - Similar tools exist (for example Shieldz, LiveZEC, Portal, StreamLock). No claim of being first.
 
 ## Sample content
-"Big Buck Bunny", (c) 2008 Blender Foundation | www.bigbuckbunny.org, licensed [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) ([source](https://peach.blender.org/about/)). Modified: cut into three 90 second clips (stream copy, no re-encode) from the official 320x180 download, with a thumbnail frame from each. Not endorsed by the Blender Foundation. The clip files are not stored in this repo: run `sh scripts/make-clips.sh` (needs curl, unzip, ffmpeg) to rebuild them. Videos are served only with a paid purchase token for that video (checked on every request, including range requests).
+"Big Buck Bunny", (c) 2008 Blender Foundation | www.bigbuckbunny.org, licensed [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) ([source](https://peach.blender.org/about/)). Modified: cut into three 90 second clips and re-encoded to 256x144 H.264 at about 100 kbps so they stream over a slow free tunnel from the official 320x180 download, with a thumbnail frame from each. Not endorsed by the Blender Foundation. The clip files are not stored in this repo: run `sh scripts/make-clips.sh` (needs curl, unzip, ffmpeg) to rebuild them. Videos are served only with a paid purchase token for that video (checked on every request, including range requests).
 
 ## Built vs reused
 - **Built here (original):** `server.js` (catalog, unlock purchases, ZIP-321 URI builder, memo-matched payment detection, token-gated media streaming, creator API), `public/` (mobile UI), `setup.py` (dev setup).
