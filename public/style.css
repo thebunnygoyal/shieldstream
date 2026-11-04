@@ -56,3 +56,8 @@ video{width:100%;border-radius:12px;background:#000}.unl{display:flex;gap:8px;al
 
 .or{text-align:center;color:#9fb0d0;font-size:13px;margin:14px 0 8px}
 .sm{display:block;color:#9fb0d0;font-size:12px;margin:6px 0 10px}
+
+.skip{position:absolute;left:-999px;top:8px;background:#f4b728;color:#111;padding:10px 14px;border-radius:8px;z-index:9;font-weight:600}.skip:focus{left:8px}
+a:focus-visible,button:focus-visible,input:focus-visible,video:focus-visible{outline:3px solid #f4b728;outline-offset:2px}
+button,.back,.vcard{min-height:44px}.back{display:inline-flex;align-items:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
