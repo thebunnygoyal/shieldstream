@@ -1,8 +1,9 @@
 {
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/thumb/:path*", "destination": "/api/proxy/thumb/:path*" },
-    { "source": "/media/:path*", "destination": "/api/proxy/media/:path*" },
+    { "source": "/thumb/:path*", "destination": "/api/proxy?__u=/thumb/:path*" },
+    { "source": "/media/:path*", "destination": "/api/proxy?__u=/media/:path*" },
+    { "source": "/api/:path*", "destination": "/api/proxy?__u=/api/:path*" },
     { "source": "/watch/:id", "destination": "/index.html" },
     { "source": "/unlock/:id", "destination": "/index.html" },
     { "source": "/login", "destination": "/index.html" },
