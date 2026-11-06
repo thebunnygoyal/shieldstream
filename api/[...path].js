@@ -6,16 +6,11 @@ const HOP = new Set(['connection', 'transfer-encoding', 'content-encoding', 'kee
 
 module.exports = async function handler(req, res) {
   try {
-    const segs = [].concat(req.query.path || []);
-    const upstreamPath = segs[0] === 'proxy'
-      ? '/' + segs.slice(1).join('/')
-      : '/api' + (segs.length ? '/' + segs.join('/') : '');
-    const q = new URLSearchParams();
-    for (const [k, v] of Object.entries(req.query)) {
-      if (k === 'path') continue;
-      for (const x of [].concat(v)) q.append(k, String(x));
-    }
-    const qs = q.toString();
+    const u = new URL(req.url, 'http://localhost');
+    const p = u.pathname;
+    // /api/proxy/<rest> proxies to /<rest>; any other path passes through unchanged.
+    const upstreamPath = p.startsWith('/api/proxy/') ? p.slice('/api/proxy'.length) : p;
+    console.log('[proxy]', req.method, p, '->', upstreamPath + u.search);
     const headers = { 'ngrok-skip-browser-warning': '1' };
     for (const h of ['accept', 'content-type', 'range', 'cookie', 'authorization', 'x-forwarded-for', 'if-none-match', 'if-modified-since']) {
       if (req.headers[h]) headers[h] = req.headers[h];
@@ -25,7 +20,7 @@ module.exports = async function handler(req, res) {
       body = typeof req.body === 'string' ? req.body : (req.body ? JSON.stringify(req.body) : undefined);
       if (body && !headers['content-type']) headers['content-type'] = 'application/json';
     }
-    const up = await fetch(UPSTREAM + upstreamPath + (qs ? '?' + qs : ''), { method: req.method, headers, body });
+    const up = await fetch(UPSTREAM + upstreamPath + u.search, { method: req.method, headers, body });
     res.status(up.status);
     up.headers.forEach((v, k) => { if (!HOP.has(k) && k !== 'set-cookie') res.setHeader(k, v); });
     const cookies = up.headers.getSetCookie ? up.headers.getSetCookie() : [];
