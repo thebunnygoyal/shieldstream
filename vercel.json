@@ -1,9 +1,11 @@
 {
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/thumb/:path*", "destination": "/api/proxy?__u=/thumb/:path*" },
-    { "source": "/media/:path*", "destination": "/api/proxy?__u=/media/:path*" },
-    { "source": "/api/:path*", "destination": "/api/proxy?__u=/api/:path*" },
+    { "source": "/thumb/:path+", "destination": "/api/proxy?__u=/thumb/:path+" },
+    { "source": "/media/:path+", "destination": "/api/proxy?__u=/media/:path+" },
+    { "source": "/api/creator/:path+", "destination": "/api/proxy?__u=/api/creator/:path+" },
+    { "source": "/api/purchases/:path+", "destination": "/api/proxy?__u=/api/purchases/:path+" },
+    { "source": "/api/videos/:path+", "destination": "/api/proxy?__u=/api/videos/:path+" },
     { "source": "/watch/:id", "destination": "/index.html" },
     { "source": "/unlock/:id", "destination": "/index.html" },
     { "source": "/login", "destination": "/index.html" },
