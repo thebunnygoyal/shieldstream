@@ -1,9 +1,8 @@
 {
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://freezable-underfoot-lustfully.ngrok-free.dev/api/:path*" },
-    { "source": "/thumb/:path*", "destination": "https://freezable-underfoot-lustfully.ngrok-free.dev/thumb/:path*" },
-    { "source": "/media/:path*", "destination": "https://freezable-underfoot-lustfully.ngrok-free.dev/media/:path*" },
+    { "source": "/thumb/:path*", "destination": "/api/proxy/thumb/:path*" },
+    { "source": "/media/:path*", "destination": "/api/proxy/media/:path*" },
     { "source": "/watch/:id", "destination": "/index.html" },
     { "source": "/unlock/:id", "destination": "/index.html" },
     { "source": "/login", "destination": "/index.html" },
